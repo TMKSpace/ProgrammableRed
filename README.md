@@ -1,2 +1,2 @@
 # ProgrammableRed
- Mod, that adds tools to programm redstone
+ Mod, that adds tools to program redstone
