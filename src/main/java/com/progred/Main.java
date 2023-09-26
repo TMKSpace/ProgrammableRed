@@ -28,8 +28,11 @@ public class Main implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		Registry.register(Registries.BLOCK,new Identifier(MODID,"websocket_block"),WEBSOCKET_BLOCK);
 		Registry.register(Registries.ITEM,new Identifier(MODID,"websocket_block"),WEBSOCKET_BLOCK_ITEM);
+		Registry.register(Registries.BLOCK,new Identifier(MODID,"test_block"),TEST_BLOCK);
+		Registry.register(Registries.ITEM,new Identifier(MODID,"test_block"),TEST_BLOCK_ITEM);
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
 			content.add(WEBSOCKET_BLOCK_ITEM);
+			content.add(TEST_BLOCK_ITEM);
 		});
 	}
 }

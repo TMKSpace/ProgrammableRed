@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "progred:block/test_block"}
+  }
+}

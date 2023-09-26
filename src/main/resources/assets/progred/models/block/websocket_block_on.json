@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "progred:block/websocket_block_output_on"
+  }
+}
