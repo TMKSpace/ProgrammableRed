@@ -1,5 +1,20 @@
 {
   "variants": {
-    "": {"model": "progred:block/test_block"}
+    "power=0": {"model": "progred:block/test_block_0"},
+    "power=1": {"model": "progred:block/test_block_1"},
+    "power=2": {"model": "progred:block/test_block_2"},
+    "power=3": {"model": "progred:block/test_block_3"},
+    "power=4": {"model": "progred:block/test_block_4"},
+    "power=5": {"model": "progred:block/test_block_5"},
+    "power=6": {"model": "progred:block/test_block_6"},
+    "power=7": {"model": "progred:block/test_block_7"},
+    "power=8": {"model": "progred:block/test_block_8"},
+    "power=9": {"model": "progred:block/test_block_9"},
+    "power=10":{"model": "progred:block/test_block_10"}, 
+    "power=11":{"model": "progred:block/test_block_11"}, 
+    "power=12":{"model": "progred:block/test_block_12"}, 
+    "power=13":{"model": "progred:block/test_block_13"}, 
+    "power=14":{"model": "progred:block/test_block_14"}, 
+    "power=15":{"model": "progred:block/test_block_15"}
   }
 }
