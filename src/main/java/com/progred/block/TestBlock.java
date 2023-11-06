@@ -56,8 +56,8 @@ public class TestBlock extends Block {
             assert lightningEntity != null;
             lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
             world.spawnEntity(lightningEntity);
-            world.setBlockState(pos, state.with(CHARGE, world.getBlockState(pos).get(CHARGE) > 0 ? world.getBlockState(pos).get(CHARGE)-1 : 0));
         }
+        world.setBlockState(pos, state.with(CHARGE, world.getBlockState(pos).get(CHARGE) > 0 ? world.getBlockState(pos).get(CHARGE)-1 : 0));
         super.onSteppedOn(world, pos, state, entity);
     }
 
