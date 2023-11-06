@@ -15,6 +15,6 @@ public class TranslationGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
-     //   translationBuilder.add();
+     //   translationBuilder.add(); // TODO: MAYBE complete this s#it.
     }
 }

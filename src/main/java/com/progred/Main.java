@@ -31,26 +31,15 @@ public class Main implements ModInitializer {
 		Registry.register(Registries.ITEM, new Identifier(MODID, "websocket_block"), WEBSOCKET_BLOCK_ITEM);
 		Registry.register(Registries.BLOCK, new Identifier(MODID, "test_block"), TEST_BLOCK);
 		Registry.register(Registries.ITEM, new Identifier(MODID, "test_block"), TEST_BLOCK_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID,"red_infiniwire"),RED_INFINIWIRE);
-		Registry.register(Registries.ITEM,new Identifier(MODID,"red_infiniwire"),RED_INFINIWIRE_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID,"green_infiniwire"),GREEN_INFINIWIRE);
-		Registry.register(Registries.ITEM,new Identifier(MODID,"green_infiniwire"),GREEN_INFINIWIRE_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID,"blue_infiniwire"),BLUE_INFINIWIRE);
-		Registry.register(Registries.ITEM,new Identifier(MODID,"blue_infiniwire"),BLUE_INFINIWIRE_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID,"yellow_infiniwire"),YELLOW_INFINIWIRE);
-		Registry.register(Registries.ITEM,new Identifier(MODID,"yellow_infiniwire"),YELLOW_INFINIWIRE_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID,"pink_infiniwire"),PINK_INFINIWIRE);
-		Registry.register(Registries.ITEM,new Identifier(MODID,"pink_infiniwire"),PINK_INFINIWIRE_ITEM);
 		Registry.register(Registries.ITEM, new Identifier(MODID, "pizdec"), new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(500).saturationModifier(500f).build()).fireproof().rarity(Rarity.EPIC)));
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
 			content.add(WEBSOCKET_BLOCK_ITEM);
 			content.add(TEST_BLOCK_ITEM);
-			content.add(RED_INFINIWIRE_ITEM);
-			content.add(GREEN_INFINIWIRE_ITEM);
-			content.add(BLUE_INFINIWIRE_ITEM);
-			content.add(YELLOW_INFINIWIRE_ITEM);
-			content.add(PINK_INFINIWIRE_ITEM);
+			for(String id : WIRE_BLOCK_ITEMS.keySet()){
+				content.add(WIRE_BLOCK_ITEMS.get(id));
+				content.add(INFINIWIRE_BLOCK_ITEMS.get(id));
+			}
 		});
 	}
 }

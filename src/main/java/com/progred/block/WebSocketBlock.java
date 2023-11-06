@@ -17,7 +17,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class WebSocketBlock extends Block {
+public class WebSocketBlock extends Block { // TODO: Create client in block using netty and make ui to set ip, port etc.
     public static final BooleanProperty POWERED = Properties.POWERED;
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder){

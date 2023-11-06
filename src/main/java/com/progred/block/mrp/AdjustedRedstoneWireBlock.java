@@ -38,7 +38,13 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         this(Settings.copy(Blocks.REDSTONE_WIRE), hueChange);
     }
 
-    protected AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
+//    protected AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
+//        super(properties);
+//        redstoneWires.add(this);
+//        blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
+//    }
+
+    public AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
         super(properties);
         redstoneWires.add(this);
         blockAndStrengthToColorMap.put(this, calculateColors(hueChange));

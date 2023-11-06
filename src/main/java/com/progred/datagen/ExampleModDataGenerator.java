@@ -28,3 +28,5 @@ public class ExampleModDataGenerator implements DataGeneratorEntrypoint {
         }
     }
 }
+
+//TODO: Add more datagens. (Or not, need to read code of some other datagens.)
