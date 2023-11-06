@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "progred:item/custom_item"
+    "layer0": "progred:item/pizdec"
   }
 }

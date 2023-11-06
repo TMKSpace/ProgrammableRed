@@ -2,12 +2,13 @@ package com.progred;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static com.progred.block.ModBlocks.*;
@@ -40,6 +41,7 @@ public class Main implements ModInitializer {
 		Registry.register(Registries.ITEM,new Identifier(MODID,"yellow_infiniwire"),YELLOW_INFINIWIRE_ITEM);
 		Registry.register(Registries.BLOCK, new Identifier(MODID,"pink_infiniwire"),PINK_INFINIWIRE);
 		Registry.register(Registries.ITEM,new Identifier(MODID,"pink_infiniwire"),PINK_INFINIWIRE_ITEM);
+		Registry.register(Registries.ITEM, new Identifier(MODID, "pizdec"), new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(500).saturationModifier(500f).build()).fireproof().rarity(Rarity.EPIC)));
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
 			content.add(WEBSOCKET_BLOCK_ITEM);

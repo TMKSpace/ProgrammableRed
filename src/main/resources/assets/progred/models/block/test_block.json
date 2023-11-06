@@ -1,9 +1,9 @@
 {
   "parent": "block/cube_all",
   "textures": {
-		"0": "progred:block/test_block",
-		"1": "progred:block/test_block_0",
-		"particle": "progred:block/test_block_0"
+		"0": "progred:block/test_block/test_block_side",
+		"1": "progred:block/test_block/test_block_0",
+	  "particle": "progred:block/test_block/test_block_0"
 	},
 	"elements": [
 		{

@@ -1,0 +1,6 @@
+{
+	"parent": "progred:block/test_block",
+	"textures": {
+		"1": "progred:block/test_block/test_block_4"
+	}
+}
