@@ -87,8 +87,8 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         return redstoneWires.contains(block);
     }
 
-    public AdjustedRedstoneItem createBlockItem(Item dye) {
-        return new AdjustedRedstoneItem(this, new Item.Settings(), dye);
+    public AdjustedRedstoneItem createBlockItem(Item dye, int color) {
+        return new AdjustedRedstoneItem(this, new Item.Settings(), dye, color);
     }
 
     protected WireConnection getRenderConnectionType(BlockView reader, BlockPos pos, Direction direction, boolean nonNormalCubeAbove) {

@@ -25,18 +25,18 @@ public class ModBlocks {
     public static final TestBlock TEST_BLOCK = new TestBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Item TEST_BLOCK_ITEM = new BlockItem(TEST_BLOCK,new Item.Settings());
 
-    public static HashMap<String, Pair<Float,Item>> COLORS = new HashMap<>();
+    public static HashMap<String, Pair<Pair<Float,Integer>,Item>> COLORS = new HashMap<>();
     public static HashMap<String, AdjustedRedstoneWireBlock> WIRE_BLOCKS;
     public static final HashMap<String, AdjustedRedstoneItem> WIRE_BLOCK_ITEMS;
     public static final HashMap<String, InfiniwireBlock> INFINIWIRE_BLOCKS;
     public static final HashMap<String, InfiniwireItem> INFINIWIRE_BLOCK_ITEMS;
 
     static{
-        COLORS.put("blue", Pair.of(2.0F / 3.0F, Items.BLUE_DYE));
-        COLORS.put("green", Pair.of(1.0F / 3.0F, Items.GREEN_DYE));
-        COLORS.put("orange", Pair.of(1.0F / 12.0F, Items.ORANGE_DYE));
-        COLORS.put("pink", Pair.of(5.0F / 6.0F, Items.PINK_DYE));
-        COLORS.put("yellow", Pair.of(1.0F / 6.0F, Items.YELLOW_DYE));
+        COLORS.put("blue", Pair.of(Pair.of(2.0F / 3.0F,255), Items.BLUE_DYE));
+        COLORS.put("green", Pair.of(Pair.of(1.0F / 3.0F,65280), Items.GREEN_DYE));
+        COLORS.put("orange", Pair.of(Pair.of(1.0F / 12.0F,16755200), Items.ORANGE_DYE));
+        COLORS.put("pink", Pair.of(Pair.of(5.0F / 6.0F,16711880), Items.PINK_DYE));
+        COLORS.put("yellow", Pair.of(Pair.of(1.0F / 6.0F,16776960), Items.YELLOW_DYE));
         WIRE_BLOCKS = new HashMap<>(COLORS.size()+1);
 //        WIRE_BLOCKS_EXCLUDING_REDSTONE = new HashMap<>(COLORS.size());
         WIRE_BLOCK_ITEMS = new HashMap<>(COLORS.size() + 1);
@@ -44,39 +44,30 @@ public class ModBlocks {
         for (String color : COLORS.keySet()) {
             String id = color + "_wire";
             AdjustedRedstoneWireBlock wireBlockObject =
-                    Registry.register(Registries.BLOCK ,new Identifier(MODID,id), new AdjustedRedstoneWireBlock(COLORS.get(color).getLeft()));
+                    Registry.register(Registries.BLOCK ,new Identifier(MODID,id), new AdjustedRedstoneWireBlock(COLORS.get(color).getLeft().getLeft()));
             WIRE_BLOCKS.put(color, wireBlockObject);
 //            WIRE_BLOCKS_EXCLUDING_REDSTONE.put(color, wireBlockObject);
             AdjustedRedstoneItem wireItemObject = Registry.register(Registries.ITEM, new Identifier(MODID, id),
-                    WIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight()));
+                    WIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight(), COLORS.get(color).getLeft().getRight()));
             WIRE_BLOCK_ITEMS.put(color, wireItemObject);
 //            WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE.put(color, wireItemObject);
         }
         String red = "red";
-        COLORS.put(red, Pair.of(0.0F,Items.RED_DYE));
+        COLORS.put(red, Pair.of(Pair.of(0.0F,16711680),Items.RED_DYE));
         WIRE_BLOCKS.put(red, Registry
-                .register(Registries.BLOCK, new Identifier(MODID,"redstone_wire"), new AdjustedRedstoneWireBlock(COLORS.get(red).getLeft())));
+                .register(Registries.BLOCK, new Identifier(MODID,"red_wire"), new AdjustedRedstoneWireBlock(COLORS.get(red).getLeft().getLeft())));
         WIRE_BLOCK_ITEMS.put(red, Registry
-                .register(Registries.ITEM,new Identifier(MODID,"redstone"), WIRE_BLOCKS.get(red).createBlockItem(COLORS.get(red).getRight())));
+                .register(Registries.ITEM,new Identifier(MODID,"red_wire"), WIRE_BLOCKS.get(red).createBlockItem(COLORS.get(red).getRight(), COLORS.get(red).getLeft().getRight())));
         INFINIWIRE_BLOCKS = new HashMap<>(COLORS.size());
         INFINIWIRE_BLOCK_ITEMS = new HashMap<>(COLORS.size());
         for (String color : COLORS.keySet()) {
             String id = color + "_infiniwire";
-            INFINIWIRE_BLOCKS.put(color, Registry.register(Registries.BLOCK , new Identifier(MODID, id), new InfiniwireBlock(COLORS.get(color).getLeft())));
-            INFINIWIRE_BLOCK_ITEMS.put(color, (InfiniwireItem) Registry.register(Registries.ITEM , new Identifier(MODID, id),
-                    INFINIWIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight())));
+            INFINIWIRE_BLOCKS.put(color, Registry.register(Registries.BLOCK , new Identifier(MODID, id), new InfiniwireBlock(COLORS.get(color).getLeft().getLeft())));
+            INFINIWIRE_BLOCK_ITEMS.put(color, Registry.register(Registries.ITEM , new Identifier(MODID, id),
+                    INFINIWIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight(), COLORS.get(color).getLeft().getRight())));
         }
 
     }
-//    public static final InfiniwireBlock RED_INFINIWIRE = new InfiniwireBlock(1.0F); // а можно я буду настраиватьэто злоебучее свечение с помощью присутствия/отсутствия редстоуновых ламп под проводом?
-//    public static final InfiniwireBlock GREEN_INFINIWIRE = new InfiniwireBlock(0.5F);
-//    public static final InfiniwireBlock BLUE_INFINIWIRE = new InfiniwireBlock(0.3F);
-//    public static final InfiniwireBlock YELLOW_INFINIWIRE = new InfiniwireBlock(0.7F);
-//    public static final InfiniwireBlock PINK_INFINIWIRE = new InfiniwireBlock(0.1F);
-//    public static final Item RED_INFINIWIRE_ITEM = RED_INFINIWIRE.createBlockItem(ItemTags.WOOL_CARPETS);
-//    public static final Item GREEN_INFINIWIRE_ITEM = GREEN_INFINIWIRE.createBlockItem(ItemTags.WOOL_CARPETS);
-//    public static final Item BLUE_INFINIWIRE_ITEM = BLUE_INFINIWIRE.createBlockItem(ItemTags.WOOL_CARPETS);
-//    public static final Item YELLOW_INFINIWIRE_ITEM = YELLOW_INFINIWIRE.createBlockItem(ItemTags.WOOL_CARPETS);
-//    public static final Item PINK_INFINIWIRE_ITEM = PINK_INFINIWIRE.createBlockItem(ItemTags.WOOL_CARPETS);
-    // а ещё можно пиздыцкнуть такой блок который будет вести себя точно так же как и binary wire но его можно будет передвигать поршнем
+    // а можно я буду настраиватьэто злоебучее свечение с помощью присутствия/отсутствия редстоуновых ламп под проводом?
+    //а ещё можно пиздыцкнуть такой блок который будет вести себя точно так же как и binary wire но его можно будет передвигать поршнем
 }

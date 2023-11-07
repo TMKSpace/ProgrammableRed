@@ -55,9 +55,9 @@ public class InfiniwireBlock extends AdjustedRedstoneWireBlock {
         return strongest;
     }
 
-    public InfiniwireItem createBlockItem(Item dye)
+    public InfiniwireItem createBlockItem(Item dye, int color)
     {
-        return new InfiniwireItem(this, new Item.Settings(), dye);
+        return new InfiniwireItem(this, new Item.Settings(), dye, color);
     }
 
     @Override
