@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -47,7 +48,7 @@ public class TestBlock extends Block {
             TntEntity tnt =  EntityType.TNT.create(world);
             assert tnt != null;
             tnt.setFuse(0);
-            tnt.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+            tnt.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos.up()));
             world.spawnEntity(tnt);
             world.setBlockState(pos, state.with(CHARGE, 0));
         }
@@ -64,6 +65,7 @@ public class TestBlock extends Block {
     int getPower(BlockView world, BlockPos pos){
         return world.getBlockState(pos).get(CHARGE);
     }
+    @Override
     public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return getWeakRedstonePower(state,world,pos,direction);
     }
@@ -74,5 +76,11 @@ public class TestBlock extends Block {
     @Override
     public boolean emitsRedstonePower(BlockState state) {
         return true;
+    }
+    public void discharge(ItemUsageContext context, Integer power){
+        World world = context.getWorld();
+        BlockPos pos = context.getBlockPos();
+        BlockState state = world.getBlockState(pos);
+        world.setBlockState(pos, state.with(CHARGE, world.getBlockState(pos).get(CHARGE) > 0 ? world.getBlockState(pos).get(CHARGE)-power : 0));
     }
 }

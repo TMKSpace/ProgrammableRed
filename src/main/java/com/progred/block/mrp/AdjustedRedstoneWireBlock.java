@@ -1,12 +1,10 @@
 package com.progred.block.mrp;
 
-import com.progred.item.AdjustedRedstoneItem;
+import com.progred.item.mrp.AdjustedRedstoneItem;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.WireConnection;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;

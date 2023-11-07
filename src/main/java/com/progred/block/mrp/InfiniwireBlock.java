@@ -5,12 +5,11 @@ package com.progred.block.mrp;
 
 import com.progred.block.mrp.util.InfiniwireChainParent;
 import com.progred.block.mrp.util.InfiniwireGraphBuilder;
-import com.progred.item.InfiniwireItem;
+import com.progred.item.mrp.InfiniwireItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;

@@ -1,19 +1,12 @@
 package com.progred.datagen;
 
-import com.progred.block.ModBlocks;
-import com.progred.block.mrp.AdjustedRedstoneWireBlock;
-import com.progred.item.AdjustedRedstoneItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.enums.WireConnection;
 import net.minecraft.data.client.*;
-import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
 
 import java.util.Optional;
 

@@ -1,7 +1,6 @@
 package com.progred;
 
-import com.progred.block.mrp.AdjustedRedstoneWireBlock;
-import com.progred.item.AdjustedRedstoneItem;
+import com.progred.item.mrp.AdjustedRedstoneItem;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 
 import static com.progred.block.ModBlocks.*;

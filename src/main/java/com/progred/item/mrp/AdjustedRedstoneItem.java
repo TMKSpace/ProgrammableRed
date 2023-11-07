@@ -1,4 +1,4 @@
-package com.progred.item;
+package com.progred.item.mrp;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;

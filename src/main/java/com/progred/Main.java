@@ -1,5 +1,7 @@
 package com.progred;
 
+import com.progred.block.ModBlocks;
+import com.progred.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -12,6 +14,7 @@ import net.minecraft.util.Rarity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static com.progred.block.ModBlocks.*;
+import static com.progred.item.ModItems.*;
 
 public class Main implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -26,16 +29,14 @@ public class Main implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
-		Registry.register(Registries.BLOCK, new Identifier(MODID, "websocket_block"), WEBSOCKET_BLOCK);
-		Registry.register(Registries.ITEM, new Identifier(MODID, "websocket_block"), WEBSOCKET_BLOCK_ITEM);
-		Registry.register(Registries.BLOCK, new Identifier(MODID, "test_block"), TEST_BLOCK);
-		Registry.register(Registries.ITEM, new Identifier(MODID, "test_block"), TEST_BLOCK_ITEM);
-		Registry.register(Registries.ITEM, new Identifier(MODID, "pizdec"), new Item(new FabricItemSettings().food(new FoodComponent.Builder().hunger(500).saturationModifier(500f).build()).fireproof().rarity(Rarity.EPIC)));
+		LOGGER.info("Let's make some mechanisms!");
+
+		new ModItems().RegisterItems();
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
 			content.add(WEBSOCKET_BLOCK_ITEM);
 			content.add(TEST_BLOCK_ITEM);
+			content.add(DISCHARGER);
 			for(String id : WIRE_BLOCK_ITEMS.keySet()){
 				content.add(WIRE_BLOCK_ITEMS.get(id));
 				content.add(INFINIWIRE_BLOCK_ITEMS.get(id));

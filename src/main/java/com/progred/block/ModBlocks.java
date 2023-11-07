@@ -1,9 +1,8 @@
 package com.progred.block;
 
-import com.progred.item.AdjustedRedstoneItem;
-import com.progred.item.InfiniwireItem;
+import com.progred.item.mrp.AdjustedRedstoneItem;
+import com.progred.item.mrp.InfiniwireItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
@@ -11,9 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.tag.ItemTags;
 import com.progred.block.mrp.*;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.tuple.Pair;
 import static com.progred.Main.MODID;
@@ -21,12 +18,6 @@ import static com.progred.Main.MODID;
 import java.util.HashMap;
 
 public class ModBlocks {
-    public static final WebSocketBlock WEBSOCKET_BLOCK = WebSocketBlock.WEBSOCKETBLOCK;  //new WebSocketBlock(FabricBlockSettings.of(Material.STONE).strength(4.0f));
-    public static final Item WEBSOCKET_BLOCK_ITEM = new BlockItem(WEBSOCKET_BLOCK,new Item.Settings());
-    public static final TestBlock TEST_BLOCK = new TestBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f));
-    public static final Item TEST_BLOCK_ITEM = new BlockItem(TEST_BLOCK,new Item.Settings());
-
-
     public static HashMap<String, Pair<Pair<Float,Integer>,Item>> COLORS = new HashMap<>();
     public static HashMap<String, AdjustedRedstoneWireBlock> WIRE_BLOCKS;
     public static final HashMap<String, AdjustedRedstoneItem> WIRE_BLOCK_ITEMS;
@@ -70,6 +61,12 @@ public class ModBlocks {
         }
 
     }
+
+    public static final WebSocketBlock WEBSOCKET_BLOCK = Registry.register(Registries.BLOCK, new Identifier(MODID, "websocket_block"), WebSocketBlock.WEBSOCKETBLOCK);
+    public static final Item WEBSOCKET_BLOCK_ITEM = Registry.register(Registries.ITEM, new Identifier(MODID,"websocket_block"), new BlockItem(WEBSOCKET_BLOCK,new Item.Settings()));
+    public static final TestBlock TEST_BLOCK = Registry.register(Registries.BLOCK, new Identifier(MODID, "test_block"), new TestBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f)));
+    public static final Item TEST_BLOCK_ITEM = Registry.register(Registries.ITEM, new Identifier(MODID, "test_block"), new BlockItem(TEST_BLOCK,new Item.Settings()));
+
     // а можно я буду настраиватьэто злоебучее свечение с помощью присутствия/отсутствия редстоуновых ламп под проводом?
     //а ещё можно пиздыцкнуть такой блок который будет вести себя точно так же как и binary wire но его можно будет передвигать поршнем
 }
