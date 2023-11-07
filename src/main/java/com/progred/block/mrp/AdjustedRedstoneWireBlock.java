@@ -38,17 +38,17 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         this(Settings.copy(Blocks.REDSTONE_WIRE), hueChange);
     }
 
-//    protected AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
-//        super(properties);
-//        redstoneWires.add(this);
-//        blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
-//    }
-
-    public AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
+    protected AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
         super(properties);
         redstoneWires.add(this);
         blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
     }
+
+//    public AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
+//        super(properties);
+//        redstoneWires.add(this);
+//        blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
+//    }
 
     protected static HashMap<Integer, Pair<Integer, Vec3d>> calculateColors(float hueChange) {
         while (hueChange > 1) {
@@ -87,8 +87,8 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         return redstoneWires.contains(block);
     }
 
-    public AdjustedRedstoneItem createBlockItem(TagKey<Item> dyeTag) {
-        return new AdjustedRedstoneItem(this, new Item.Settings(), dyeTag);
+    public AdjustedRedstoneItem createBlockItem(Item dye) {
+        return new AdjustedRedstoneItem(this, new Item.Settings(), dye);
     }
 
     protected WireConnection getRenderConnectionType(BlockView reader, BlockPos pos, Direction direction, boolean nonNormalCubeAbove) {

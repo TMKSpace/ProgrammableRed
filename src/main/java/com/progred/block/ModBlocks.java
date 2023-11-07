@@ -25,48 +25,46 @@ public class ModBlocks {
     public static final TestBlock TEST_BLOCK = new TestBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Item TEST_BLOCK_ITEM = new BlockItem(TEST_BLOCK,new Item.Settings());
 
-    public static HashMap<String, Float> COLORS = new HashMap<>(); // TODO: Pair<Float, TagKey<Item>> instead of just Float. Maybe it's better to set just Item. (You can get any of them using Items.ID).
+    public static HashMap<String, Pair<Float,Item>> COLORS = new HashMap<>();
     public static HashMap<String, AdjustedRedstoneWireBlock> WIRE_BLOCKS;
-    public static final HashMap<String, AdjustedRedstoneWireBlock> WIRE_BLOCKS_EXCLUDING_REDSTONE;
     public static final HashMap<String, AdjustedRedstoneItem> WIRE_BLOCK_ITEMS;
-    public static final HashMap<String, AdjustedRedstoneItem> WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE;
     public static final HashMap<String, InfiniwireBlock> INFINIWIRE_BLOCKS;
     public static final HashMap<String, InfiniwireItem> INFINIWIRE_BLOCK_ITEMS;
 
     static{
-        COLORS.put("blue", 2.0F / 3.0F);
-        COLORS.put("green", 1.0F / 3.0F);
-        COLORS.put("orange", 1.0F / 12.0F);
-        COLORS.put("pink", 5.0F / 6.0F);
-        COLORS.put("yellow", 1.0F / 6.0F);
+        COLORS.put("blue", Pair.of(2.0F / 3.0F, Items.BLUE_DYE));
+        COLORS.put("green", Pair.of(1.0F / 3.0F, Items.GREEN_DYE));
+        COLORS.put("orange", Pair.of(1.0F / 12.0F, Items.ORANGE_DYE));
+        COLORS.put("pink", Pair.of(5.0F / 6.0F, Items.PINK_DYE));
+        COLORS.put("yellow", Pair.of(1.0F / 6.0F, Items.YELLOW_DYE));
         WIRE_BLOCKS = new HashMap<>(COLORS.size()+1);
-        WIRE_BLOCKS_EXCLUDING_REDSTONE = new HashMap<>(COLORS.size());
+//        WIRE_BLOCKS_EXCLUDING_REDSTONE = new HashMap<>(COLORS.size());
         WIRE_BLOCK_ITEMS = new HashMap<>(COLORS.size() + 1);
-        WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE = new HashMap<>(COLORS.size());
+//        WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE = new HashMap<>(COLORS.size());
         for (String color : COLORS.keySet()) {
             String id = color + "_wire";
             AdjustedRedstoneWireBlock wireBlockObject =
-                    Registry.register(Registries.BLOCK ,new Identifier(MODID,id), new AdjustedRedstoneWireBlock(COLORS.get(color)));
+                    Registry.register(Registries.BLOCK ,new Identifier(MODID,id), new AdjustedRedstoneWireBlock(COLORS.get(color).getLeft()));
             WIRE_BLOCKS.put(color, wireBlockObject);
-            WIRE_BLOCKS_EXCLUDING_REDSTONE.put(color, wireBlockObject);
+//            WIRE_BLOCKS_EXCLUDING_REDSTONE.put(color, wireBlockObject);
             AdjustedRedstoneItem wireItemObject = Registry.register(Registries.ITEM, new Identifier(MODID, id),
-                    WIRE_BLOCKS.get(color).createBlockItem(ItemTags.WOOL_CARPETS)); // TODO: Replace WOOL_CARPETS with dye tag (CHECK MoreWires MOD).
+                    WIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight()));
             WIRE_BLOCK_ITEMS.put(color, wireItemObject);
-            WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE.put(color, wireItemObject);
+//            WIRE_BLOCK_ITEMS_EXCLUDING_REDSTONE.put(color, wireItemObject);
         }
         String red = "red";
-        COLORS.put(red, 0.0F);
+        COLORS.put(red, Pair.of(0.0F,Items.RED_DYE));
         WIRE_BLOCKS.put(red, Registry
-                .register(Registries.BLOCK, new Identifier(MODID,"redstone_wire"), new AdjustedRedstoneWireBlock(COLORS.get(red))));
+                .register(Registries.BLOCK, new Identifier(MODID,"redstone_wire"), new AdjustedRedstoneWireBlock(COLORS.get(red).getLeft())));
         WIRE_BLOCK_ITEMS.put(red, Registry
-                .register(Registries.ITEM,new Identifier(MODID,"redstone"), WIRE_BLOCKS.get(red).createBlockItem(ItemTags.WOOL_CARPETS)));
+                .register(Registries.ITEM,new Identifier(MODID,"redstone"), WIRE_BLOCKS.get(red).createBlockItem(COLORS.get(red).getRight())));
         INFINIWIRE_BLOCKS = new HashMap<>(COLORS.size());
         INFINIWIRE_BLOCK_ITEMS = new HashMap<>(COLORS.size());
         for (String color : COLORS.keySet()) {
             String id = color + "_infiniwire";
-            INFINIWIRE_BLOCKS.put(color, Registry.register(Registries.BLOCK , new Identifier(MODID, id), new InfiniwireBlock(COLORS.get(color))));
+            INFINIWIRE_BLOCKS.put(color, Registry.register(Registries.BLOCK , new Identifier(MODID, id), new InfiniwireBlock(COLORS.get(color).getLeft())));
             INFINIWIRE_BLOCK_ITEMS.put(color, (InfiniwireItem) Registry.register(Registries.ITEM , new Identifier(MODID, id),
-                    INFINIWIRE_BLOCKS.get(color).createBlockItem(ItemTags.WOOL_CARPETS)));
+                    INFINIWIRE_BLOCKS.get(color).createBlockItem(COLORS.get(color).getRight())));
         }
 
     }

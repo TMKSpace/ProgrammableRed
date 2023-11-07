@@ -6,9 +6,15 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 
 public class AdjustedRedstoneItem extends BlockItem{
+    private final Item dye;
 
-    public AdjustedRedstoneItem(Block blockIn, Settings builder, TagKey<Item> dyeTag)
+    public AdjustedRedstoneItem(Block blockIn, Settings builder, Item dye)
     {
         super(blockIn, builder);
+        this.dye = dye;
+    }
+    public Item getDye()
+    {
+        return dye;
     }
 }

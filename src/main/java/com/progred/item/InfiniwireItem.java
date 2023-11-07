@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.TagKey;
 
 public class InfiniwireItem extends AdjustedRedstoneItem{
-    public InfiniwireItem(Block blockIn, Settings builder, TagKey<Item> dyeTag)
+    public InfiniwireItem(Block blockIn, Settings builder, Item dye)
     {
-        super(blockIn, builder, dyeTag);
+        super(blockIn, builder, dye);
     }
 
     @Override
