@@ -5,11 +5,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ExampleModDataGenerator implements DataGeneratorEntrypoint {
+public class ModDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
         FabricDataGenerator.Pack pack = generator.createPack();
@@ -29,5 +28,3 @@ public class ExampleModDataGenerator implements DataGeneratorEntrypoint {
         }
     }
 }
-
-//TODO: Add more datagens. (Or not, need to read code of some other datagens.)

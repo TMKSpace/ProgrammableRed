@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/redstone_dust_side1",
+  "textures": {
+    "line": "progred:block/infiniwire_line1"
+  }
+}

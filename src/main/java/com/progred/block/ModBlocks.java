@@ -4,6 +4,7 @@ import com.progred.item.AdjustedRedstoneItem;
 import com.progred.item.InfiniwireItem;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -24,6 +25,7 @@ public class ModBlocks {
     public static final Item WEBSOCKET_BLOCK_ITEM = new BlockItem(WEBSOCKET_BLOCK,new Item.Settings());
     public static final TestBlock TEST_BLOCK = new TestBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f));
     public static final Item TEST_BLOCK_ITEM = new BlockItem(TEST_BLOCK,new Item.Settings());
+
 
     public static HashMap<String, Pair<Pair<Float,Integer>,Item>> COLORS = new HashMap<>();
     public static HashMap<String, AdjustedRedstoneWireBlock> WIRE_BLOCKS;

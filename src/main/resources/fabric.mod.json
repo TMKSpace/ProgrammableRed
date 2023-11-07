@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"fabric-datagen": [
-			"com.progred.datagen.ExampleModDataGenerator"
+          "com.progred.datagen.ModDataGenerator"
 		],
 		"main": [
 			"com.progred.Main"
