@@ -48,7 +48,7 @@ public class TestBlock extends Block {
             TntEntity tnt =  EntityType.TNT.create(world);
             assert tnt != null;
             tnt.setFuse(0);
-            tnt.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos.up()));
+            tnt.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
             world.spawnEntity(tnt);
             world.setBlockState(pos, state.with(CHARGE, 0));
         }
