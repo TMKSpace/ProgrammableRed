@@ -1,5 +1,7 @@
 package com.progred.block.mrp;
 
+import com.progred.Main;
+import com.progred.util.UtilThings;
 import com.progred.item.mrp.AdjustedRedstoneItem;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.WireConnection;
@@ -32,49 +34,37 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
     private static final HashSet<Block> redstoneWires = new HashSet<>();
     protected static boolean globalCanProvidePower = true;
 
-    public AdjustedRedstoneWireBlock(float hueChange) {
-        this(Settings.copy(Blocks.REDSTONE_WIRE), hueChange);
+    public AdjustedRedstoneWireBlock(int RGBInt) {
+        this(Settings.copy(Blocks.REDSTONE_WIRE), RGBInt);
     }
 
-    protected AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
+    protected AdjustedRedstoneWireBlock(Settings properties, int RGBInt) {
         super(properties);
         redstoneWires.add(this);
-        blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
+        blockAndStrengthToColorMap.put(this, calculateColors(RGBInt));
+        blockRgbMap.put(this, RGBInt);
     }
 
-//    public AdjustedRedstoneWireBlock(Settings properties, float hueChange) {
-//        super(properties);
-//        redstoneWires.add(this);
-//        blockAndStrengthToColorMap.put(this, calculateColors(hueChange));
-//    }
+    protected static HashMap<Integer, Pair<Integer, Vec3d>> calculateColors(int RGBInt) {
+        int[] RGB = UtilThings.rgbIntToTuple(RGBInt);
+        Vec3d RGB0 = new Vec3d((RGB[0]!=0) ? RGB[0]/2 : 0, (RGB[1]!=0) ? RGB[1]/2 : 0, (RGB[2]!=0) ? RGB[2]/2 : 0);
+        Vec3d Multipliers = new Vec3d((RGB0.x!=0) ? RGB0.x/15 : 0, (RGB0.y!=0) ? RGB0.y/15 : 0, (RGB0.z!=0) ? RGB0.z/15 : 0);
 
-    protected static HashMap<Integer, Pair<Integer, Vec3d>> calculateColors(float hueChange) {
-        while (hueChange > 1) {
-            hueChange--;
-        }
-        while (hueChange < 0) {
-            hueChange++;
-        }
         HashMap<Integer, Pair<Integer, Vec3d>> colors = new HashMap<>();
-        for (int i = 0; i <= 15; i++) {
-            Vec3d RGBColorVecF = COLORS[i];
-            Vec3i RGBColorVecI =
-                    new Vec3i((int) (RGBColorVecF.getX() * 255), (int) (RGBColorVecF.getY() * 255), (int) (RGBColorVecF.getZ() * 255));
-            float[] hsb = Color.RGBtoHSB(RGBColorVecI.getX(), RGBColorVecI.getY(), RGBColorVecI.getZ(), null);
-            hsb[0] += hueChange;
-            if (hsb[0] > 1) {
-                hsb[0]--;
-            }
-            int color = Color.HSBtoRGB(hsb[0], hsb[1], hsb[2]);
-            Vec3d colorVec = new Vec3d(((color >> 16) & 0xFF) / 255.0F, ((color >> 8) & 0xFF) / 255.0F,
-                    (color & 0xFF) / 255.0F);
-            colors.put(i, Pair.of(color, colorVec));
+        for(int i = 0; i<16; i++){
+            Vec3d Colors = RGB0.add(Multipliers.multiply(i));
+            colors.put(i, Pair.of(UtilThings.rgbToRgbInt(Colors), Colors.multiply((double) 1/255)));
         }
         return colors;
     }
 
+
     public static int getColor(BlockState state) {
         return blockAndStrengthToColorMap.get(state.getBlock()).get(state.get(POWER)).getLeft();
+    }
+
+    public int getMaxColor(){
+        return blockAndStrengthToColorMap.get(this).get(15).getLeft();
     }
 
     protected boolean isWireBlock(BlockState state) {
@@ -85,8 +75,8 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         return redstoneWires.contains(block);
     }
 
-    public AdjustedRedstoneItem createBlockItem(Item dye, int color) {
-        return new AdjustedRedstoneItem(this, new Item.Settings(), dye, color);
+    public AdjustedRedstoneItem createBlockItem(Item dye) {
+        return new AdjustedRedstoneItem(this, new Item.Settings(), dye);
     }
 
     protected WireConnection getRenderConnectionType(BlockView reader, BlockPos pos, Direction direction, boolean nonNormalCubeAbove) {

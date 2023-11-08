@@ -1,20 +1,14 @@
 package com.progred;
 
-import com.progred.block.ModBlocks;
 import com.progred.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
+import net.minecraft.item.ItemGroups;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import static com.progred.block.ModBlocks.*;
-import static com.progred.item.ModItems.*;
+import static com.progred.item.ModItems.DISCHARGER;
 
 public class Main implements ModInitializer {
 	// This logger is used to write text to the console and the log file.

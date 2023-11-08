@@ -21,8 +21,8 @@ import java.util.Set;
 
 public class InfiniwireBlock extends AdjustedRedstoneWireBlock {
     private boolean doingUpdate = false;
-    public InfiniwireBlock(float hueChange) {
-        super(Settings.copy(Blocks.REDSTONE_WIRE), hueChange);
+    public InfiniwireBlock(int RGBInt) {
+        super(Settings.copy(Blocks.REDSTONE_WIRE), RGBInt);
     }
     public static HashSet<BlockPos> updateInfiniwireChain(World world, Map<BlockPos, BlockState> chain, int strength)
     {
@@ -54,9 +54,9 @@ public class InfiniwireBlock extends AdjustedRedstoneWireBlock {
         return strongest;
     }
 
-    public InfiniwireItem createBlockItem(Item dye, int color)
+    public InfiniwireItem createBlockItem(Item dye)
     {
-        return new InfiniwireItem(this, new Item.Settings(), dye, color);
+        return new InfiniwireItem(this, new Item.Settings(), dye);
     }
 
     @Override

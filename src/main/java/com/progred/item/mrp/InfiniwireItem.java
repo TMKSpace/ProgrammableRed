@@ -5,9 +5,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class InfiniwireItem extends AdjustedRedstoneItem{
-    public InfiniwireItem(Block blockIn, Settings builder, Item dye, int color)
+    public InfiniwireItem(Block blockIn, Settings builder, Item dye)
     {
-        super(blockIn, builder, dye, color);
+        super(blockIn, builder, dye);
     }
 
     @Override
