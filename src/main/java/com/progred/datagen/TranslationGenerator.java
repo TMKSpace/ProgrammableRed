@@ -8,8 +8,7 @@ import net.minecraft.registry.Registry;
 
 import java.util.HashMap;
 
-import static com.progred.block.ModBlocks.INFINIWIRE_BLOCKS;
-import static com.progred.block.ModBlocks.WIRE_BLOCKS;
+import static com.progred.block.ModBlocks.*;
 
 public class TranslationGenerator extends FabricLanguageProvider {
     public TranslationGenerator(FabricDataOutput dataOutput){
@@ -23,6 +22,8 @@ public class TranslationGenerator extends FabricLanguageProvider {
             addWireTranslation(WIRE_BLOCKS.get(color),translationBuilder);
             addWireTranslation(INFINIWIRE_BLOCKS.get(color),translationBuilder);
         }
+        translationBuilder.add(TEST_BLOCK, "Test block");
+        translationBuilder.add(WEBSOCKET_BLOCK, "WebSocket block");
     }
 
     protected void addWireTranslation(Block block, TranslationBuilder translationBuilder){

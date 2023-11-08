@@ -1,4 +1,4 @@
-// 1.19.4	2023-11-09T01:53:18.7111879	ProgrammableRedstone/Model Definitions
+// 1.19.4	2023-11-09T01:59:39.1491092	ProgrammableRedstone/Model Definitions
 2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\pink_wire.json
 2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\yellow_wire.json
 2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\blue_wire.json
@@ -6,13 +6,13 @@
 cca12317bf4f7a6eebada0f8fd5f98a099a4505d assets\progred\blockstates\orange_infiniwire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\yellow_infiniwire.json
 cca12317bf4f7a6eebada0f8fd5f98a099a4505d assets\progred\blockstates\pink_infiniwire.json
-110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\green_wire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\orange_wire.json
+110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\green_wire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\red_wire.json
 cca12317bf4f7a6eebada0f8fd5f98a099a4505d assets\progred\blockstates\red_infiniwire.json
 2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\orange_wire.json
-2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\red_wire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\blue_infiniwire.json
+2f897ba102908cb1626fc7aab6f38d2530379348 assets\progred\blockstates\red_wire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\yellow_wire.json
 110ebecf4648439f436a3267d2ba58671eb0507e assets\progred\models\item\red_infiniwire.json
 cca12317bf4f7a6eebada0f8fd5f98a099a4505d assets\progred\blockstates\yellow_infiniwire.json

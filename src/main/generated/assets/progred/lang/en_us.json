@@ -9,6 +9,8 @@
   "block.progred.pink_wire": "Pink Wire",
   "block.progred.red_infiniwire": "Red Infiniwire",
   "block.progred.red_wire": "Red Wire",
+  "block.progred.test_block": "Test block",
+  "block.progred.websocket_block": "WebSocket block",
   "block.progred.yellow_infiniwire": "Yellow Infiniwire",
   "block.progred.yellow_wire": "Yellow Wire"
 }
