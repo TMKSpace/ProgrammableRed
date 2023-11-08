@@ -1,0 +1,13 @@
+// 1.19.4	2023-11-09T01:50:22.7132925	ProgrammableRedstone/Block Loot Tables
+8590b1a3d6774efbc2733c94d757eb958f3b81e0 data\progred\loot_tables\blocks\yellow_wire.json
+b483aa0541ede1f9d0ed9bf9b6bc76faefb0925e data\progred\loot_tables\blocks\orange_infiniwire.json
+c3ee5c85ceed6b2ac25831177101b3e939b942c8 data\progred\loot_tables\blocks\red_infiniwire.json
+157a8e6dd1d4ccc748fa68f72c093e777d990a97 data\progred\loot_tables\blocks\green_infiniwire.json
+9e457a6c1a1a7310c04df33270b924ea79292717 data\progred\loot_tables\blocks\blue_wire.json
+4479e3b53558fb2dd052d42a2ea7fbeab38ced36 data\progred\loot_tables\blocks\green_wire.json
+62d90fb01d3bd3c82434666272971a3be3fc798d data\progred\loot_tables\blocks\pink_wire.json
+200b5589342aa18c46f5e94493f84d973048e938 data\progred\loot_tables\blocks\blue_infiniwire.json
+fc71fca8a6657839e2027bd2f08c08f86164f638 data\progred\loot_tables\blocks\pink_infiniwire.json
+7060f04b565c87cccfa431668203a108b3700062 data\progred\loot_tables\blocks\yellow_infiniwire.json
+4af9c84ac61cb4256881e159435a44aad1412407 data\progred\loot_tables\blocks\orange_wire.json
+fc3a4a5ec94b9a355af0422fa7dd7515a462436b data\progred\loot_tables\blocks\red_wire.json
