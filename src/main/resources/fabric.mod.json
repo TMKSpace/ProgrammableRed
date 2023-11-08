@@ -3,13 +3,14 @@
 	"id": "progred",
 	"version": "${version}",
 	"name": "ProgrammableRedstone",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Милана... МИЛАНА ПИЗДАЧЁК ЗАКРЫЛА, Я АБСОЛЮТ И ВИЖУ ВСЁЁЁЁЁ!!!!!!!!!!!!11111111111111",
 	"authors": [
-		"Me!"
+		"KotIsOff",
+		"Murka124"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/tmkspace/programmablered"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/progred/icon.png",
