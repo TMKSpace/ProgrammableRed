@@ -15,7 +15,6 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
 
         pack.addProvider(MyTagGenerator::new);
         pack.addProvider(ModelDataGenerator::new);
-        pack.addProvider(BlockLootTablesGenerator::new);
     }
 
     private static class MyTagGenerator extends FabricTagProvider.ItemTagProvider {
