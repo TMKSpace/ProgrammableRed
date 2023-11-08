@@ -42,7 +42,6 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         super(properties);
         redstoneWires.add(this);
         blockAndStrengthToColorMap.put(this, calculateColors(RGBInt));
-        blockRgbMap.put(this, RGBInt);
     }
 
     protected static HashMap<Integer, Pair<Integer, Vec3d>> calculateColors(int RGBInt) {
