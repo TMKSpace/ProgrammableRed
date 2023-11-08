@@ -4,11 +4,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-
-import java.util.HashMap;
 
 import static com.progred.block.ModBlocks.*;
+import static com.progred.item.ModItems.*;
 
 public class TranslationGenerator extends FabricLanguageProvider {
     public TranslationGenerator(FabricDataOutput dataOutput){
@@ -24,6 +22,8 @@ public class TranslationGenerator extends FabricLanguageProvider {
         }
         translationBuilder.add(TEST_BLOCK, "Test block");
         translationBuilder.add(WEBSOCKET_BLOCK, "WebSocket block");
+        translationBuilder.add(DISCHARGER, "Discharger");
+        translationBuilder.add(PIZDEC,"Pizdec");
     }
 
     protected void addWireTranslation(Block block, TranslationBuilder translationBuilder){
