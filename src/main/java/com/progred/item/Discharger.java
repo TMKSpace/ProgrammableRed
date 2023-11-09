@@ -1,5 +1,6 @@
 package com.progred.item;
 
+import com.progred.block.TestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 
-import static com.progred.block.ModBlocks.TEST_BLOCK;
+import static com.progred.block.ModBlocks.*;
 
 public class Discharger extends Item {
     public Discharger(Settings settings) {

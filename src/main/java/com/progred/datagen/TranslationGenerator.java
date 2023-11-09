@@ -15,11 +15,6 @@ public class TranslationGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
-     //   translationBuilder.add(); // TODO: MAYBE complete this s#it.
-        for(String color : WIRE_BLOCKS.keySet()){
-            addWireTranslation(WIRE_BLOCKS.get(color),translationBuilder);
-            addWireTranslation(INFINIWIRE_BLOCKS.get(color),translationBuilder);
-        }
         translationBuilder.add(TEST_BLOCK, "Test block");
         translationBuilder.add(WEBSOCKET_BLOCK, "WebSocket block");
         translationBuilder.add(DISCHARGER, "Discharger");

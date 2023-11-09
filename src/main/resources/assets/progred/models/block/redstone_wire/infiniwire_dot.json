@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/redstone_dust_dot",
-  "textures": {
-    "line": "progred:block/infiniwire_dot",
-    "particle": "progred:block/infiniwire_dot"
-  }
-}

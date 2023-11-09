@@ -1,18 +1,6 @@
 {
-  "block.progred.blue_infiniwire": "Blue Infiniwire",
-  "block.progred.blue_wire": "Blue Wire",
-  "block.progred.green_infiniwire": "Green Infiniwire",
-  "block.progred.green_wire": "Green Wire",
-  "block.progred.orange_infiniwire": "Orange Infiniwire",
-  "block.progred.orange_wire": "Orange Wire",
-  "block.progred.pink_infiniwire": "Pink Infiniwire",
-  "block.progred.pink_wire": "Pink Wire",
-  "block.progred.red_infiniwire": "Red Infiniwire",
-  "block.progred.red_wire": "Red Wire",
   "block.progred.test_block": "Test block",
   "block.progred.websocket_block": "WebSocket block",
-  "block.progred.yellow_infiniwire": "Yellow Infiniwire",
-  "block.progred.yellow_wire": "Yellow Wire",
   "item.progred.discharger": "Discharger",
   "item.progred.pizdec": "Pizdec"
 }

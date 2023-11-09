@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.progred.block.ModBlocks.*;
-import static com.progred.item.ModItems.DISCHARGER;
+import static com.progred.item.ModItems.*;
 
 public class Main implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -25,16 +25,13 @@ public class Main implements ModInitializer {
 
 		LOGGER.info("Let's make some mechanisms!");
 
-		new ModItems().RegisterItems();
+		RegisterItems();
+		RegisterBlocks();
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
 			content.add(WEBSOCKET_BLOCK_ITEM);
 			content.add(TEST_BLOCK_ITEM);
 			content.add(DISCHARGER);
-			for(String id : WIRE_BLOCK_ITEMS.keySet()){
-				content.add(WIRE_BLOCK_ITEMS.get(id));
-				content.add(INFINIWIRE_BLOCK_ITEMS.get(id));
-			}
 		});
 	}
 }
