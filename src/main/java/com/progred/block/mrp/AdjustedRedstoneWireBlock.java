@@ -8,8 +8,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneWireBlock;
 import net.minecraft.block.enums.WireConnection;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -72,6 +77,10 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
 
     public AdjustedRedstoneItem createBlockItem(Item dye) {
         return new AdjustedRedstoneItem(this, new Item.Settings(), dye);
+    }
+
+    private WireConnection getRenderConnectionType(BlockView world, BlockPos pos, Direction direction) {
+        return this.getRenderConnectionType(world, pos, direction, !world.getBlockState(pos.up()).isSolidBlock(world, pos));
     }
 
     protected WireConnection getRenderConnectionType(BlockView reader, BlockPos pos, Direction direction, boolean nonNormalCubeAbove) {
@@ -229,6 +238,11 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         return globalCanProvidePower;
     }
 
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getPlacementState(ctx.getWorld(), this.dotState, ctx.getBlockPos());
+    }
+
     private BlockState getPlacementState(BlockView world, BlockState state, BlockPos pos) {
         boolean bl7;
         boolean bl = AdjustedRedstoneWireBlock.isNotConnected(state);
@@ -281,10 +295,9 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
     }
 
     private BlockState getDefaultWireState(BlockView world, BlockState state, BlockPos pos) {
-        boolean bl = !world.getBlockState(pos.up()).isSolidBlock(world, pos);
         for (Direction direction : Direction.Type.HORIZONTAL) {
             if ((state.get(DIRECTION_TO_WIRE_CONNECTION_PROPERTY.get(direction))).isConnected()) continue;
-            WireConnection wireConnection = this.getRenderConnectionType(world, pos, direction, bl);
+            WireConnection wireConnection = this.getRenderConnectionType(world, pos, direction);
             state = state.with(DIRECTION_TO_WIRE_CONNECTION_PROPERTY.get(direction), wireConnection);
         }
         return state;
@@ -327,6 +340,31 @@ public class AdjustedRedstoneWireBlock extends RedstoneWireBlock {
         double e = 0.5 + (double)(0.4375f * (float)direction.getOffsetY()) + (double)(j * (float)direction2.getOffsetY());
         double k = 0.5 + (double)(0.4375f * (float)direction.getOffsetZ()) + (double)(j * (float)direction2.getOffsetZ());
         world.addParticle(new DustParticleEffect(color.toVector3f(), 1.0f), (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + k, 0.0, 0.0, 0.0);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!player.getAbilities().allowModifyWorld) {
+            return ActionResult.PASS;
+        }
+        if (AdjustedRedstoneWireBlock.isFullyConnected(state) || AdjustedRedstoneWireBlock.isNotConnected(state)) {
+            BlockState blockState = AdjustedRedstoneWireBlock.isFullyConnected(state) ? this.getDefaultState() : this.dotState;
+            blockState = blockState.with(POWER, state.get(POWER));
+            if ((blockState = this.getPlacementState(world, blockState, pos)) != state) {
+                world.setBlockState(pos, blockState, Block.NOTIFY_ALL);
+                this.updateForNewState(world, pos, state, blockState);
+                return ActionResult.SUCCESS;
+            }
+        }
+        return ActionResult.PASS;
+    }
+
+    private void updateForNewState(World world, BlockPos pos, BlockState oldState, BlockState newState) {
+        for (Direction direction : Direction.Type.HORIZONTAL) {
+            BlockPos blockPos = pos.offset(direction);
+            if ((oldState.get(DIRECTION_TO_WIRE_CONNECTION_PROPERTY.get(direction))).isConnected() == newState.get(DIRECTION_TO_WIRE_CONNECTION_PROPERTY.get(direction)).isConnected() || !world.getBlockState(blockPos).isSolidBlock(world, blockPos)) continue;
+            world.updateNeighborsExcept(blockPos, newState.getBlock(), direction.getOpposite());
+        }
     }
 
     protected boolean canThisConnectTo(BlockState blockState, @Nullable Direction side) {
