@@ -1,6 +1,7 @@
 package com.progred.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -33,19 +34,16 @@ public class WebSocketBlock extends Block { // TODO: Create client in block usin
         if(world.getBlockState(pos).get(POWERED)) return 15;
         return 0;
     }
-    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return getWeakRedstonePower(state,world,pos,direction);
+    @Override
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
     }
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return getPower(world,pos);
     }
-    @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
     public static final WebSocketBlock WEBSOCKETBLOCK = new WebSocketBlock(FabricBlockSettings.copyOf(Blocks.STONE));
-    public WebSocketBlock(Settings settings){
+    public WebSocketBlock(AbstractBlock.Settings settings){
         super(settings);
         setDefaultState(getDefaultState().with(POWERED,false));
     }

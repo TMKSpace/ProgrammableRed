@@ -25,11 +25,7 @@ public class Discharger extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
         BlockState blockState = context.getWorld().getBlockState(context.getBlockPos());
         Block block = blockState.getBlock();
-        if(block == TEST_BLOCK){
-            Objects.requireNonNull(context.getPlayer()).playSound(SoundEvents.BLOCK_GLASS_BREAK, 1, 1);
-            TEST_BLOCK.discharge(context, 1);
-        }
-        else{
+        if(block != TEST_BLOCK) {
             Objects.requireNonNull(context.getPlayer()).playSound(SoundEvents.ENTITY_VILLAGER_NO, 1, 1);
         }
         return super.useOnBlock(context);

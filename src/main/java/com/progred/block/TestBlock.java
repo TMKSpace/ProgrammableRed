@@ -1,5 +1,6 @@
 package com.progred.block;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -20,9 +21,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import static com.progred.item.ModItems.DISCHARGER;
+
 public class TestBlock extends Block {
     public static final IntProperty CHARGE = IntProperty.of("power",0,15);
-    public TestBlock(Settings settings){
+    public TestBlock(AbstractBlock.Settings settings){
         super(settings);
         setDefaultState(getDefaultState().with(CHARGE,0));
     }
@@ -32,6 +35,11 @@ public class TestBlock extends Block {
     }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(player.getMainHandStack().getItem() == DISCHARGER){
+            if(state.get(CHARGE)>0) player.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1, 1);
+            this.discharge(world, pos, state, 1);
+            return ActionResult.SUCCESS;
+        }
         float pitch = (float) (1 + (world.getBlockState(pos).get(CHARGE) * 0.1));
         if(world.getBlockState(pos).get(CHARGE)<15) {
             world.setBlockState(pos, state.cycle(CHARGE));
@@ -55,7 +63,7 @@ public class TestBlock extends Block {
         else if(world.getBlockState(pos).get(CHARGE)>=3){
             LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
             assert lightningEntity != null;
-            lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(pos));
+            lightningEntity.refreshPositionAfterTeleport(entity.getPos().add(0,1,0));
             world.spawnEntity(lightningEntity);
         }
         world.setBlockState(pos, state.with(CHARGE, world.getBlockState(pos).get(CHARGE) > 0 ? world.getBlockState(pos).get(CHARGE)-1 : 0));
@@ -66,21 +74,19 @@ public class TestBlock extends Block {
         return world.getBlockState(pos).get(CHARGE);
     }
     @Override
-    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return getWeakRedstonePower(state,world,pos,direction);
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
     }
     @Override
     public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return getPower(world,pos);
     }
-    @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
-    }
     public void discharge(ItemUsageContext context, Integer power){
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
-        BlockState state = world.getBlockState(pos);
+        this.discharge(world, pos, world.getBlockState(pos), power);
+    }
+    public void discharge(World world,BlockPos pos,BlockState state,Integer power){
         world.setBlockState(pos, state.with(CHARGE, world.getBlockState(pos).get(CHARGE) > 0 ? world.getBlockState(pos).get(CHARGE)-power : 0));
     }
 }
