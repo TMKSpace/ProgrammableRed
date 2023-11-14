@@ -2,8 +2,8 @@ package com.progred.util;
 
 import net.minecraft.util.math.Vec3d;
 
-public class UtilThings {
-    public static int[] rgbIntToTuple(int RGBInt){
+public class Color {
+    public static int[] rgbIntToArray(int RGBInt){
         int Red = RGBInt/256/256%256;
         int Green = RGBInt/256%256;
         int Blue = RGBInt%256;
@@ -12,6 +12,13 @@ public class UtilThings {
         RGB[1] = Green;
         RGB[2] = Blue;
         return RGB;
+    }
+
+    public static Vec3d rgbIntToVec3d(int RGBInt){
+        int Red = RGBInt/256/256%256;
+        int Green = RGBInt/256%256;
+        int Blue = RGBInt%256;
+        return new Vec3d(Red,Green,Blue);
     }
 
     public static int rgbToRgbInt(Vec3d vec3d){

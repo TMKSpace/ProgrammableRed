@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import static com.progred.item.ModItems.DISCHARGER;
+import static com.progred.registry.ModItems.DISCHARGER;
 
 public class TestBlock extends Block {
     public static final IntProperty CHARGE = IntProperty.of("power",0,15);

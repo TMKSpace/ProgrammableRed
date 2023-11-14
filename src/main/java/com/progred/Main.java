@@ -1,14 +1,13 @@
 package com.progred;
 
-import com.progred.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroups;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.progred.block.ModBlocks.*;
-import static com.progred.item.ModItems.*;
+import static com.progred.registry.ModBlocks.*;
+import static com.progred.registry.ModItems.*;
 
 public class Main implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -25,12 +24,12 @@ public class Main implements ModInitializer {
 
 		LOGGER.info("Let's make some mechanisms!");
 
-		RegisterItems();
-		RegisterBlocks();
+		registerItems();
+		registerBlocks();
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
-			content.add(WEBSOCKET_BLOCK_ITEM);
-			content.add(TEST_BLOCK_ITEM);
+			content.add(WEBSOCKET_BLOCK.getRight());
+			content.add(TEST_BLOCK.getRight());
 			content.add(DISCHARGER);
 		});
 	}

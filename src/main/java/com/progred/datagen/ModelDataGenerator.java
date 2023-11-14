@@ -2,16 +2,12 @@ package com.progred.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.enums.WireConnection;
 import net.minecraft.data.client.*;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
 import static com.progred.Main.MODID;
-import static com.progred.block.ModBlocks.*;
 
 public class ModelDataGenerator extends FabricModelProvider {
     public ModelDataGenerator(FabricDataOutput generator){
